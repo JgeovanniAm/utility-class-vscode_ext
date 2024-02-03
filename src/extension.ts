@@ -13,7 +13,7 @@ export async function activate(context: vscode.ExtensionContext) {
   try {
     const url = SITE;
     if (!url) {
-      throw Error("SITE env didn't found :(");
+      throw Error("SITE env wasn't found 😅 ");
     }
     const cssData = await getResources(url, context);
     const arrayUtilsClass = await gettingUtilsClass(cssData);
@@ -23,10 +23,10 @@ export async function activate(context: vscode.ExtensionContext) {
     const customDataHTMLVScode = composeFileProps(arrayUtilsClass);
     writeCustomHtmlData(customDataHTMLVScode);
     vscode.window.showInformationMessage(
-      'Congratulations, your extension "vz" is now active!',
+      'Congratulations, your extension "avz-utils-class" is now active! 😎',
     );
   } catch (error) {
-    vscode.window.showErrorMessage('Something wrong happened in vz-utils-class extension: ' + error);
+    vscode.window.showErrorMessage('Something wrong happened in vz-utils-class extension 🤨:' + error);
   }
 }
 
