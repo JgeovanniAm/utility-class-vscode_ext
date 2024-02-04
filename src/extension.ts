@@ -16,15 +16,18 @@ export async function activate(context: vscode.ExtensionContext) {
       throw Error("SITE env wasn't found 😅 ");
     }
     const cssData = await getResources(url, context);
-    const arrayUtilsClass = await gettingUtilsClass(cssData);
+    const arrayUtilsClass = gettingUtilsClass(cssData);
     if (!arrayUtilsClass) {
-      return;
+      throw Error("Getting utility class");
     }
     const customDataHTMLVScode = composeFileProps(arrayUtilsClass);
-    writeCustomHtmlData(customDataHTMLVScode);
-    vscode.window.showInformationMessage(
-      'Congratulations, your extension "avz-utils-class" is now active! 😎',
-    );
+    writeCustomHtmlData(customDataHTMLVScode).then(() => {
+      vscode.window.showInformationMessage(
+        '"avz-utils-class" is now active! 😎',
+      );
+    }).catch((err) => {
+      throw Error(err);
+    });
   } catch (error) {
     vscode.window.showErrorMessage('Something wrong happened in vz-utils-class extension 🤨:' + error);
   }
