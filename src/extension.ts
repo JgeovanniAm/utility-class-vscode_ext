@@ -21,13 +21,10 @@ export async function activate(context: vscode.ExtensionContext) {
       throw Error("Getting utility class");
     }
     const customDataHTMLVScode = composeFileProps(arrayUtilsClass);
-    writeCustomHtmlData(customDataHTMLVScode).then(() => {
-      vscode.window.showInformationMessage(
-        '"avz-utils-class" is now active! 😎',
-      );
-    }).catch((err) => {
-      throw Error(err);
-    });
+    writeCustomHtmlData(customDataHTMLVScode);
+    vscode.window.showInformationMessage(
+      '"avz-utils-class" is now active! 😎',
+    );
   } catch (error) {
     vscode.window.showErrorMessage('Something wrong happened in vz-utils-class extension 🤨:' + error);
   }
